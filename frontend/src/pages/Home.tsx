@@ -4,31 +4,31 @@ import AnimateOnScroll from '../components/AnimateOnScroll';
 
 const studios = [
   {
-    id: 'studio-a',
-    name: 'Studio A',
+    id: 'veludo',
+    name: 'Veludo',
     subtitle: 'Gravação',
     description: 'Sala principal de gravação profissional com tratamento acústico premium e equipamento de alta qualidade.',
     features: ['Tratamento acústico', 'Microfones pro', 'Isolamento total'],
     price: '25€/h',
-    accent: '#e2ff00',
+    letter: 'V',
   },
   {
-    id: 'studio-b',
-    name: 'Studio B',
+    id: 'obsidiana',
+    name: 'Obsidiana',
     subtitle: 'Produção',
     description: 'Estúdio de produção e mixing equipado com monitores de referência e workstation completa.',
     features: ['Monitores referência', 'DAW completo', 'Plugins premium'],
     price: '20€/h',
-    accent: '#e2ff00',
+    letter: 'O',
   },
   {
-    id: 'studio-c',
-    name: 'Studio C',
+    id: 'eclipse',
+    name: 'Eclipse',
     subtitle: 'Ensaio',
     description: 'Sala de ensaio ampla com backline incluído, perfeita para bandas e sessões em grupo.',
     features: ['Backline incluído', 'PA system', 'Espaço amplo'],
     price: '15€/h',
-    accent: '#e2ff00',
+    letter: 'E',
   },
 ];
 
@@ -63,7 +63,7 @@ export default function Home() {
                   {/* Studio letter */}
                   <div className="mb-6">
                     <span className="text-6xl font-display font-bold text-white/[0.03] group-hover:text-[#e2ff00]/10 transition-colors duration-500 block leading-none">
-                      {studio.name.split(' ')[1]}
+                      {studio.letter}
                     </span>
                   </div>
 
