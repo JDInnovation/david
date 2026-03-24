@@ -76,8 +76,11 @@ app.use((err: any, _req: express.Request, res: express.Response, _next: express.
   res.status(500).json({ error: 'Erro interno do servidor.' });
 });
 
-app.listen(PORT, () => {
-  console.log(`✅ Vanguard API running at http://localhost:${PORT} [${isProduction ? 'PRODUCTION' : 'DEVELOPMENT'}]`);
-});
+// Only start the server when running directly (not in Vercel serverless)
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`✅ Vanguard API running at http://localhost:${PORT} [${isProduction ? 'PRODUCTION' : 'DEVELOPMENT'}]`);
+  });
+}
 
 export default app;
