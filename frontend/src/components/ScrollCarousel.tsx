@@ -65,7 +65,7 @@ export default function ScrollCarousel({ studioName, items, direction }: ScrollC
     // Tall wrapper — its height creates the "scroll runway" for the pinned section
     <div ref={wrapperRef} style={{ height: '300vh' }} className="relative">
       {/* Sticky container — pins to viewport while wrapper scrolls */}
-      <div className="sticky top-0 h-screen flex flex-col justify-center bg-[#0a0a0a] overflow-hidden">
+      <div className="sticky top-0 h-screen flex flex-col justify-center bg-[#0a0a0a] overflow-hidden py-16 md:py-20">
         {/* Header */}
         <div className="max-w-7xl mx-auto w-full px-6 sm:px-10 mb-10">
           <div className="flex items-center gap-6">
