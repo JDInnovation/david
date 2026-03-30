@@ -1,17 +1,19 @@
 const API_URL = import.meta.env.VITE_API_URL || '/api';
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
+  const { headers: customHeaders, ...rest } = options || {};
   const res = await fetch(`${API_URL}${path}`, {
     headers: {
       'Content-Type': 'application/json',
-      ...options?.headers,
+      ...(customHeaders as Record<string, string>),
     },
-    ...options,
+    ...rest,
   });
 
   if (!res.ok) {
     const err = await res.json().catch(() => ({ error: 'Erro desconhecido' }));
-    throw new Error(err.error || `HTTP ${res.status}`);
+    const msg = typeof err.error === 'string' ? err.error : JSON.stringify(err.error);
+    throw new Error(msg || `HTTP ${res.status}`);
   }
 
   return res.json();
