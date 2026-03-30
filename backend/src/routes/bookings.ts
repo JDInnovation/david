@@ -14,17 +14,15 @@ router.get('/', async (req: Request, res: Response) => {
       return;
     }
 
-    let query: FirebaseFirestore.Query = db.collection('bookings').orderBy('check_in', 'asc');
+    const snapshot = await db.collection('bookings').orderBy('check_in', 'asc').get();
+    let bookings = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as any));
 
     if (parsed.data.from) {
-      query = query.where('check_in', '>=', parsed.data.from);
+      bookings = bookings.filter(b => b.check_in >= parsed.data.from!);
     }
     if (parsed.data.to) {
-      query = query.where('check_out', '<=', parsed.data.to);
+      bookings = bookings.filter(b => b.check_out <= parsed.data.to!);
     }
-
-    const snapshot = await query.get();
-    const bookings = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     res.json(bookings);
   } catch (err) {
     console.error('Erro ao listar reservas:', err);
@@ -43,24 +41,24 @@ router.post('/', async (req: Request, res: Response) => {
 
     const data = parsed.data;
 
-    // Check for blackout overlap
-    const blackoutSnap = await db.collection('blackouts')
-      .where('date_from', '<=', data.check_out)
-      .where('date_to', '>=', data.check_in)
-      .get();
+    // Check for blackout overlap (fetch all, filter in-memory to avoid composite index requirement)
+    const blackoutSnap = await db.collection('blackouts').get();
+    const hasBlackout = blackoutSnap.docs.some(doc => {
+      const b = doc.data();
+      return b.date_from <= data.check_out && b.date_to >= data.check_in;
+    });
 
-    if (!blackoutSnap.empty) {
+    if (hasBlackout) {
       res.status(409).json({ error: 'As datas selecionadas não estão disponíveis.' });
       return;
     }
 
-    // Check for overlapping bookings (filter cancelled in-memory)
-    const overlapSnap = await db.collection('bookings')
-      .where('check_in', '<', data.check_out)
-      .where('check_out', '>', data.check_in)
-      .get();
-
-    const overlapping = overlapSnap.docs.filter(doc => doc.data().status !== 'cancelled');
+    // Check for overlapping bookings (fetch all, filter in-memory)
+    const overlapSnap = await db.collection('bookings').get();
+    const overlapping = overlapSnap.docs.filter(doc => {
+      const b = doc.data();
+      return b.check_in < data.check_out && b.check_out > data.check_in && b.status !== 'cancelled';
+    });
 
     if (overlapping.length > 0) {
       res.status(409).json({ error: 'Já existe uma reserva para as datas selecionadas.' });

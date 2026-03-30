@@ -17,23 +17,19 @@ router.get('/', async (req: Request, res: Response) => {
     const from = parsed.data.from || new Date().toISOString().slice(0, 10);
     const to = parsed.data.to || new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
 
-    // Get bookings in range, filter cancelled in-memory
-    const bookingSnap = await db.collection('bookings')
-      .where('check_in', '<', to)
-      .where('check_out', '>', from)
-      .get();
+    // Get bookings, filter in-memory to avoid composite index requirement
+    const bookingSnap = await db.collection('bookings').get();
 
     const bookings = bookingSnap.docs
       .map(doc => doc.data())
-      .filter(b => b.status !== 'cancelled');
+      .filter(b => b.check_in < to && b.check_out > from && b.status !== 'cancelled');
 
-    // Get blackouts in range
-    const blackoutSnap = await db.collection('blackouts')
-      .where('date_from', '<=', to)
-      .where('date_to', '>=', from)
-      .get();
+    // Get blackouts, filter in-memory
+    const blackoutSnap = await db.collection('blackouts').get();
 
-    const blackouts = blackoutSnap.docs.map(doc => doc.data());
+    const blackouts = blackoutSnap.docs
+      .map(doc => doc.data())
+      .filter(b => b.date_from <= to && b.date_to >= from);
 
     // Build unavailable dates array
     const unavailableDates: string[] = [];

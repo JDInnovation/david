@@ -46,6 +46,20 @@ async function seed() {
     console.log('  ⏭️  Admin já existe, saltando...');
   }
 
+  // Admin user 2
+  const hash2 = await bcrypt.hash('123', 12);
+  const adminsSnap2 = await db.collection('admins').where('email', '==', 'admin@lyxstudios.pt').get();
+  if (adminsSnap2.empty) {
+    await db.collection('admins').add({
+      email: 'admin@lyxstudios.pt',
+      password_hash: hash2,
+      created_at: new Date().toISOString(),
+    });
+    console.log('  ✅ Admin criado (admin@lyxstudios.pt / 123)');
+  } else {
+    console.log('  ⏭️  Admin lyxstudios já existe, saltando...');
+  }
+
   console.log('🎉 Seed concluído!');
   process.exit(0);
 }
