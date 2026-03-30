@@ -59,7 +59,7 @@ export default function Admin() {
     }
   }, [isAdmin, loadBookings, loadBlackouts]);
 
-  const handleStatusChange = async (id: number, status: string) => {
+  const handleStatusChange = async (id: string, status: string) => {
     if (!token) return;
     try {
       await updateBookingStatus(id, status, token);
@@ -85,7 +85,7 @@ export default function Admin() {
     }
   };
 
-  const handleDeleteBlackout = async (id: number) => {
+  const handleDeleteBlackout = async (id: string) => {
     if (!token) return;
     try {
       await deleteBlackout(id, token);
