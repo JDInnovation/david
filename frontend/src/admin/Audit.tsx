@@ -66,7 +66,7 @@ export default function Audit() {
   };
 
   return (
-    <div className="p-6 md:p-8 space-y-6 max-w-screen-xl">
+    <div className="p-6 md:p-8 space-y-6">
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
@@ -85,7 +85,7 @@ export default function Audit() {
               <button
                 key={v}
                 onClick={() => setView(v)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${view === v ? 'bg-[#e2ff00]/10 text-[#e2ff00]' : 'text-[#666] hover:text-[#ccc]'}`}
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${view === v ? 'bg-white/10 text-white' : 'text-[#666] hover:text-[#ccc]'}`}
               >
                 {v === 'timeline' ? 'Timeline' : 'Tabela'}
               </button>
@@ -121,13 +121,13 @@ export default function Audit() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Procurar ação ou detalhe..."
-            className="w-full pl-9 pr-3 py-2.5 bg-[#111] border border-white/[0.06] rounded-xl text-sm text-white placeholder-[#444] focus:border-[#e2ff00]/30 outline-none transition-all"
+            className="w-full pl-9 pr-3 py-2.5 bg-[#111] border border-white/[0.06] rounded-xl text-sm text-white placeholder-[#444] focus:border-white/30 outline-none transition-all"
           />
         </div>
         <select
           value={sectionFilter}
           onChange={(e) => setSectionFilter(e.target.value)}
-          className="bg-[#111] border border-white/[0.06] rounded-xl px-3 py-2.5 text-xs text-[#888] focus:border-[#e2ff00]/30 outline-none"
+          className="bg-[#111] border border-white/[0.06] rounded-xl px-3 py-2.5 text-xs text-[#888] focus:border-white/30 outline-none"
         >
           {ALL_SECTIONS.map((s) => <option key={s}>{s}</option>)}
         </select>

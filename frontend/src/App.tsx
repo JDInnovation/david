@@ -2,10 +2,12 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { ToastProvider } from './components/Toast';
 import Footer from './components/Footer';
+import CookieConsent from './components/CookieConsent';
 import Home from './pages/Home';
 import Reservations from './pages/Reservations';
 import Contact from './pages/Contact';
 import Admin from './pages/Admin';
+import Dominacao from './pages/Dominacao';
 
 function AppContent() {
   const location = useLocation();
@@ -18,10 +20,12 @@ function AppContent() {
           <Route path="/" element={<Home />} />
           <Route path="/reservas" element={<Reservations />} />
           <Route path="/contactos" element={<Contact />} />
+          <Route path="/dominacao" element={<Dominacao />} />
           <Route path="/admin" element={<Admin />} />
         </Routes>
       </div>
       {!isAdmin && <Footer />}
+      {!isAdmin && <CookieConsent />}
     </div>
   );
 }

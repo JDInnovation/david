@@ -35,7 +35,7 @@ const STUDIOS_DEFAULT = [
   },
 ];
 
-const inputCls = 'w-full px-3 py-2.5 bg-[#161616] border border-white/[0.06] rounded-xl text-sm text-white focus:border-[#e2ff00]/30 focus:ring-1 focus:ring-[#e2ff00]/10 outline-none transition-all placeholder-[#444]';
+const inputCls = 'w-full px-3 py-2.5 bg-[#161616] border border-white/[0.06] rounded-xl text-sm text-white focus:border-white/30 focus:ring-1 focus:ring-white/10 outline-none transition-all placeholder-[#444]';
 
 // ── Studio card ──────────────────────────────────────────────────────────────
 function StudioCard({ studio, onSave }: { studio: typeof STUDIOS_DEFAULT[0]; onSave: (s: typeof STUDIOS_DEFAULT[0]) => void }) {
@@ -67,7 +67,7 @@ function StudioCard({ studio, onSave }: { studio: typeof STUDIOS_DEFAULT[0]; onS
       {/* Card header */}
       <div className="flex items-center justify-between px-5 py-4 border-b border-white/[0.06]">
         <div className="flex items-center gap-3">
-          <div className={`w-8 h-8 rounded-xl flex items-center justify-center font-display font-bold text-sm ${form.active ? 'bg-[#e2ff00]/10 text-[#e2ff00]' : 'bg-white/[0.04] text-[#555]'}`}>
+          <div className={`w-8 h-8 rounded-xl flex items-center justify-center font-display font-bold text-sm ${form.active ? 'bg-white/10 text-white' : 'bg-white/[0.04] text-[#555]'}`}>
             {studio.id}
           </div>
           <div>
@@ -79,13 +79,13 @@ function StudioCard({ studio, onSave }: { studio: typeof STUDIOS_DEFAULT[0]; onS
           {/* Toggle active */}
           <button
             onClick={() => setForm((f) => ({ ...f, active: !f.active }))}
-            className={`relative w-10 h-6 rounded-full transition-colors duration-300 ${form.active ? 'bg-[#e2ff00]' : 'bg-[#2a2a2a]'}`}
+            className={`relative w-10 h-6 rounded-full transition-colors duration-300 ${form.active ? 'bg-white' : 'bg-[#2a2a2a]'}`}
           >
             <div className={`absolute top-1 w-4 h-4 rounded-full bg-[#0a0a0a] transition-transform duration-300 ${form.active ? 'translate-x-5' : 'translate-x-1'}`} />
           </button>
           <button
             onClick={() => (editing ? save() : setEditing(true))}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${editing ? 'bg-[#e2ff00] text-[#0a0a0a] hover:bg-[#d4f000]' : 'bg-white/[0.04] text-[#888] hover:text-white hover:bg-white/[0.08]'}`}
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${editing ? 'bg-white text-[#0a0a0a] hover:bg-white/80' : 'bg-white/[0.04] text-[#888] hover:text-white hover:bg-white/[0.08]'}`}
           >
             {editing ? 'Guardar' : 'Editar'}
           </button>
@@ -250,7 +250,7 @@ export default function Settings({ token }: Props) {
           <button
             key={key}
             onClick={() => setTab(key)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${tab === key ? 'bg-[#e2ff00]/10 text-[#e2ff00]' : 'text-[#666] hover:text-[#ccc]'}`}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${tab === key ? 'bg-white/10 text-white' : 'text-[#666] hover:text-[#ccc]'}`}
           >
             {label}
           </button>
@@ -316,7 +316,7 @@ export default function Settings({ token }: Props) {
           <button
             type="submit"
             disabled={savingGeneral}
-            className="w-full py-2.5 rounded-xl bg-[#e2ff00] text-[#0a0a0a] font-bold text-sm hover:bg-[#d4f000] disabled:opacity-60 transition-all flex items-center justify-center gap-2"
+            className="w-full py-2.5 rounded-xl bg-white text-[#0a0a0a] font-bold text-sm hover:bg-white/80 disabled:opacity-60 transition-all flex items-center justify-center gap-2"
           >
             {savingGeneral
               ? <><div className="w-4 h-4 border-2 border-[#0a0a0a]/30 border-t-[#0a0a0a] rounded-full animate-spin" />A guardar...</>
@@ -330,8 +330,8 @@ export default function Settings({ token }: Props) {
         <div className="space-y-5 max-w-lg">
           {/* Info card */}
           <div className="bg-[#111111] border border-white/[0.06] rounded-2xl p-5 flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-[#e2ff00]/10 border border-[#e2ff00]/20 flex items-center justify-center flex-shrink-0">
-              <span className="text-[#e2ff00] font-display font-bold text-xl">A</span>
+            <div className="w-14 h-14 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center flex-shrink-0">
+              <span className="text-white font-display font-bold text-xl">A</span>
             </div>
             <div>
               <p className="font-semibold text-white">Administrador</p>

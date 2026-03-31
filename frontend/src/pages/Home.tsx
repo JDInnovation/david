@@ -125,16 +125,19 @@ export default function Home() {
 
             {/* Left — Image with label */}
             <AnimateOnScroll animation="fade-up">
-              <div className="relative">
+              <div className="relative max-w-md mx-auto">
                 <img
                   src="/dmn.webp"
                   alt="Dominação"
-                  className="w-full max-w-md mx-auto rounded-2xl object-cover aspect-[3/4]"
+                  className="w-full rounded-2xl object-cover aspect-[3/4]"
                 />
                 <div className="absolute bottom-0 left-0 right-0">
-                  <div className="bg-white text-black text-center font-semibold text-sm uppercase tracking-wider py-4 rounded-b-2xl">
+                  <Link
+                    to="/dominacao"
+                    className="group block w-full bg-white text-black text-center font-semibold text-sm uppercase tracking-wider py-4 rounded-b-2xl transition-all duration-300 hover:bg-black hover:text-white hover:tracking-[0.22em]"
+                  >
                     Dominação
-                  </div>
+                  </Link>
                 </div>
               </div>
             </AnimateOnScroll>

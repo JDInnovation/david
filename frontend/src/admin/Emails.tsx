@@ -181,7 +181,7 @@ function Toggle({ on, onChange }: { on: boolean; onChange: (v: boolean) => void 
   return (
     <button
       onClick={() => onChange(!on)}
-      className={`relative w-11 h-6 rounded-full transition-colors duration-300 flex-shrink-0 ${on ? 'bg-[#e2ff00]' : 'bg-[#2a2a2a]'}`}
+      className={`relative w-11 h-6 rounded-full transition-colors duration-300 flex-shrink-0 ${on ? 'bg-white' : 'bg-[#2a2a2a]'}`}
       aria-label={on ? 'Desativar' : 'Ativar'}
     >
       <div className={`absolute top-1 w-4 h-4 rounded-full shadow transition-transform duration-300 ${on ? 'translate-x-5.5 bg-[#0a0a0a]' : 'translate-x-1 bg-[#666]'}`} style={{ transform: on ? 'translateX(22px)' : 'translateX(4px)' }} />
@@ -200,7 +200,7 @@ function EditModal({
   onClose: () => void;
 }) {
   const [form, setForm] = useState({ ...rule });
-  const inputCls = 'w-full px-3 py-2.5 bg-[#161616] border border-white/[0.06] rounded-xl text-sm text-white focus:border-[#e2ff00]/30 focus:ring-1 focus:ring-[#e2ff00]/10 outline-none transition-all placeholder-[#444]';
+  const inputCls = 'w-full px-3 py-2.5 bg-[#161616] border border-white/[0.06] rounded-xl text-sm text-white focus:border-white/30 focus:ring-1 focus:ring-white/10 outline-none transition-all placeholder-[#444]';
   const VARS = ['{{nome}}', '{{check_in}}', '{{check_out}}', '{{hospedes}}', '{{email}}'];
   const bodyRef = useRef<HTMLTextAreaElement>(null);
 
@@ -242,7 +242,7 @@ function EditModal({
               <select
                 value={form.delayHours}
                 onChange={(e) => setForm((f) => ({ ...f, delayHours: +e.target.value }))}
-                className="bg-[#161616] border border-white/[0.06] rounded-xl px-3 py-2.5 text-sm text-white focus:border-[#e2ff00]/30 outline-none"
+                className="bg-[#161616] border border-white/[0.06] rounded-xl px-3 py-2.5 text-sm text-white focus:border-white/30 outline-none"
               >
                 <option value={0}>Imediato</option>
                 <option value={1}>1 hora depois</option>
@@ -271,7 +271,7 @@ function EditModal({
                   key={v}
                   type="button"
                   onClick={() => insertVar(v)}
-                  className="text-[11px] font-mono bg-[#e2ff00]/8 text-[#e2ff00]/80 border border-[#e2ff00]/15 px-2 py-0.5 rounded-lg hover:bg-[#e2ff00]/15 transition-colors"
+                  className="text-[11px] font-mono bg-white/8 text-white/80 border border-white/15 px-2 py-0.5 rounded-lg hover:bg-white/15 transition-colors"
                 >
                   {v}
                 </button>
@@ -298,7 +298,7 @@ function EditModal({
           </button>
           <button
             onClick={() => { onSave(form); onClose(); }}
-            className="flex-1 py-2.5 rounded-xl bg-[#e2ff00] text-[#0a0a0a] font-bold text-sm hover:bg-[#d4f000] transition-all"
+            className="flex-1 py-2.5 rounded-xl bg-white text-[#0a0a0a] font-bold text-sm hover:bg-white/80 transition-all"
           >
             Guardar Alterações
           </button>
@@ -333,7 +333,7 @@ function TestModal({
     }, 1400);
   };
 
-  const inputCls = 'w-full px-3 py-2.5 bg-[#161616] border border-white/[0.06] rounded-xl text-sm text-white focus:border-[#e2ff00]/30 outline-none transition-all placeholder-[#444]';
+  const inputCls = 'w-full px-3 py-2.5 bg-[#161616] border border-white/[0.06] rounded-xl text-sm text-white focus:border-white/30 outline-none transition-all placeholder-[#444]';
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -375,7 +375,7 @@ function TestModal({
             <button
               type="submit"
               disabled={sending || !testEmail}
-              className="w-full py-2.5 rounded-xl bg-[#e2ff00] text-[#0a0a0a] font-bold text-sm hover:bg-[#d4f000] disabled:opacity-60 transition-all flex items-center justify-center gap-2"
+              className="w-full py-2.5 rounded-xl bg-white text-[#0a0a0a] font-bold text-sm hover:bg-white/80 disabled:opacity-60 transition-all flex items-center justify-center gap-2"
             >
               {sending ? (
                 <><div className="w-4 h-4 border-2 border-[#0a0a0a]/30 border-t-[#0a0a0a] rounded-full animate-spin" /> A enviar...</>
@@ -391,7 +391,7 @@ function TestModal({
             </div>
             <p className="font-display font-bold text-white text-lg mb-1">Enviado!</p>
             <p className="text-sm text-[#555] mb-1">Email de teste enviado para</p>
-            <p className="text-sm text-[#e2ff00]">{testEmail}</p>
+            <p className="text-sm text-white">{testEmail}</p>
             <button onClick={onClose} className="mt-6 px-6 py-2 rounded-xl border border-white/[0.08] text-[#888] hover:text-white transition-colors text-sm">
               Fechar
             </button>
@@ -417,7 +417,7 @@ function ComposeModal({
   const [body, setBody] = useState(template?.body ?? '');
   const [sending, setSending] = useState(false);
   const { addToast } = useToast();
-  const inputCls = 'w-full px-3 py-2.5 bg-[#161616] border border-white/[0.06] rounded-xl text-sm text-white focus:border-[#e2ff00]/30 outline-none transition-all placeholder-[#444]';
+  const inputCls = 'w-full px-3 py-2.5 bg-[#161616] border border-white/[0.06] rounded-xl text-sm text-white focus:border-white/30 outline-none transition-all placeholder-[#444]';
 
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
@@ -459,7 +459,7 @@ function ComposeModal({
           </div>
           <div className="flex gap-3">
             <button type="button" onClick={onClose} className="flex-1 py-2.5 rounded-xl border border-white/[0.06] text-[#666] text-sm hover:text-white transition-all">Cancelar</button>
-            <button type="submit" disabled={sending} className="flex-1 py-2.5 rounded-xl bg-[#e2ff00] text-[#0a0a0a] font-bold text-sm hover:bg-[#d4f000] disabled:opacity-60 transition-all flex items-center justify-center gap-2">
+            <button type="submit" disabled={sending} className="flex-1 py-2.5 rounded-xl bg-white text-[#0a0a0a] font-bold text-sm hover:bg-white/80 disabled:opacity-60 transition-all flex items-center justify-center gap-2">
               {sending ? <><div className="w-4 h-4 border-2 border-[#0a0a0a]/30 border-t-[#0a0a0a] rounded-full animate-spin" />A enviar...</> : <>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="w-4 h-4"><line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" /></svg>
                 Enviar</>}
@@ -480,7 +480,7 @@ function SmtpTab() {
   const [showPwd, setShowPwd] = useState(false);
   const { addToast } = useToast();
 
-  const inputCls = 'w-full px-3 py-2.5 bg-[#161616] border border-white/[0.06] rounded-xl text-sm text-white focus:border-[#e2ff00]/30 focus:ring-1 focus:ring-[#e2ff00]/10 outline-none transition-all placeholder-[#444]';
+  const inputCls = 'w-full px-3 py-2.5 bg-[#161616] border border-white/[0.06] rounded-xl text-sm text-white focus:border-white/30 focus:ring-1 focus:ring-white/10 outline-none transition-all placeholder-[#444]';
 
   const set = (k: keyof SmtpConfig) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
     setConfig((c) => ({ ...c, [k]: e.target.type === 'checkbox' ? (e.target as HTMLInputElement).checked : e.target.value }));
@@ -527,7 +527,7 @@ function SmtpTab() {
               key={p.label}
               type="button"
               onClick={() => setConfig((c) => ({ ...c, host: p.host, port: p.port, secure: p.secure }))}
-              className={`px-3 py-2 rounded-xl text-xs font-medium border transition-all ${config.host === p.host ? 'bg-[#e2ff00]/10 border-[#e2ff00]/20 text-[#e2ff00]' : 'border-white/[0.06] text-[#666] hover:text-[#ccc] hover:border-white/10'}`}
+              className={`px-3 py-2 rounded-xl text-xs font-medium border transition-all ${config.host === p.host ? 'bg-white/10 border-white/20 text-white' : 'border-white/[0.06] text-[#666] hover:text-[#ccc] hover:border-white/10'}`}
             >
               {p.label}
             </button>
@@ -595,7 +595,7 @@ function SmtpTab() {
               type="checkbox"
               checked={config.secure}
               onChange={(e) => setConfig((c) => ({ ...c, secure: e.target.checked }))}
-              className="w-4 h-4 rounded border-white/20 bg-white/5 checked:accent-[#e2ff00]"
+              className="w-4 h-4 rounded border-white/20 bg-white/5 checked:accent-white"
             />
             <label htmlFor="ssl" className="text-sm text-[#888]">Usar SSL/TLS (porta 465)</label>
           </div>
@@ -621,7 +621,7 @@ function SmtpTab() {
             <button
               type="submit"
               disabled={saving}
-              className="flex-1 py-2.5 rounded-xl bg-[#e2ff00] text-[#0a0a0a] font-bold text-sm hover:bg-[#d4f000] disabled:opacity-60 transition-all flex items-center justify-center gap-2"
+              className="flex-1 py-2.5 rounded-xl bg-white text-[#0a0a0a] font-bold text-sm hover:bg-white/80 disabled:opacity-60 transition-all flex items-center justify-center gap-2"
             >
               {saving ? <><div className="w-4 h-4 border-2 border-[#0a0a0a]/30 border-t-[#0a0a0a] rounded-full animate-spin" />A guardar...</> : 'Guardar'}
             </button>
@@ -630,9 +630,9 @@ function SmtpTab() {
       </div>
 
       {/* Info box */}
-      <div className="bg-[#e2ff00]/[0.04] border border-[#e2ff00]/10 rounded-2xl p-4">
+      <div className="bg-white/[0.04] border border-white/10 rounded-2xl p-4">
         <p className="text-xs text-[#888] leading-relaxed">
-          <span className="text-[#e2ff00]/80 font-semibold">Nota:</span> As configurações SMTP são guardadas em segurança no servidor e nunca expostas ao cliente.
+          <span className="text-white/80 font-semibold">Nota:</span> As configurações SMTP são guardadas em segurança no servidor e nunca expostas ao cliente.
           Para produção, recomendamos serviços dedicados como <span className="text-white/60">Brevo</span>, <span className="text-white/60">Mailgun</span> ou <span className="text-white/60">SendGrid</span> para maior fiabilidade e métricas de entrega.
         </p>
       </div>
@@ -672,7 +672,7 @@ export default function Emails({ token: _token }: Props) {
   const enabledCount = rules.filter((r) => r.enabled).length;
 
   return (
-    <div className="p-6 md:p-8 space-y-6 max-w-screen-xl">
+    <div className="p-6 md:p-8 space-y-6">
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
@@ -681,7 +681,7 @@ export default function Emails({ token: _token }: Props) {
         </div>
         <button
           onClick={() => setCompose('new')}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#e2ff00] text-[#0a0a0a] font-semibold text-sm hover:bg-[#d4f000] transition-all"
+          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-[#0a0a0a] font-semibold text-sm hover:bg-white/80 transition-all"
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className="w-4 h-4"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
           Enviar Email
@@ -699,7 +699,7 @@ export default function Emails({ token: _token }: Props) {
           <button
             key={key}
             onClick={() => setTab(key)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${tab === key ? 'bg-[#e2ff00]/10 text-[#e2ff00]' : 'text-[#666] hover:text-[#ccc]'}`}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${tab === key ? 'bg-white/10 text-white' : 'text-[#666] hover:text-[#ccc]'}`}
           >
             {label}
           </button>
@@ -711,8 +711,8 @@ export default function Emails({ token: _token }: Props) {
         <div className="space-y-3">
           {/* Summary banner */}
           <div className="flex items-center gap-4 bg-[#111] border border-white/[0.06] rounded-2xl px-5 py-4">
-            <div className="w-10 h-10 rounded-xl bg-[#e2ff00]/10 flex items-center justify-center flex-shrink-0">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#e2ff00" strokeWidth="1.8" strokeLinecap="round" className="w-5 h-5">
+            <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" className="w-5 h-5">
                 <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
               </svg>
             </div>
@@ -836,7 +836,7 @@ export default function Emails({ token: _token }: Props) {
                     </td>
                     <td className="px-5 py-3 text-sm text-white">{e.to}</td>
                     <td className="px-5 py-3 text-sm text-[#888] max-w-xs truncate">{e.subject}</td>
-                    <td className="px-5 py-3"><span className="text-[11px] bg-[#e2ff00]/10 text-[#e2ff00] px-2 py-0.5 rounded-full">{e.trigger}</span></td>
+                    <td className="px-5 py-3"><span className="text-[11px] bg-white/10 text-white px-2 py-0.5 rounded-full">{e.trigger}</span></td>
                     <td className="px-5 py-3 text-xs text-[#555] font-mono whitespace-nowrap">{e.sentAt.toLocaleTimeString('pt-PT', { hour: '2-digit', minute: '2-digit' })}</td>
                   </tr>
                 ))}

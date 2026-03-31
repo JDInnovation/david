@@ -6,7 +6,7 @@ import en from './locales/en.json';
 import fr from './locales/fr.json';
 import es from './locales/es.json';
 
-const savedLang = localStorage.getItem('vanguard-lang') || 'pt';
+const savedLang = localStorage.getItem('lyxstudios-lang') || 'pt';
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -23,7 +23,7 @@ i18n.use(initReactI18next).init({
 });
 
 i18n.on('languageChanged', (lng) => {
-  localStorage.setItem('vanguard-lang', lng);
+  localStorage.setItem('lyxstudios-lang', lng);
   document.documentElement.lang = lng;
 });
 

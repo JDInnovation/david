@@ -78,7 +78,7 @@ function BarChart({ data }: { data: { label: string; value: number }[] }) {
           </div>
           <div className="w-full flex items-end" style={{ height: '88px' }}>
             <div
-              className="w-full rounded-t-md bg-[#e2ff00]/20 group-hover:bg-[#e2ff00]/50 transition-all duration-300"
+              className="w-full rounded-t-md bg-white/20 group-hover:bg-white/50 transition-all duration-300"
               style={{ height: `${Math.max((d.value / max) * 100, d.value > 0 ? 4 : 0)}%` }}
             />
           </div>
@@ -99,7 +99,7 @@ function OccupancyRing({ pct }: { pct: number }) {
       <circle cx="48" cy="48" r={r} fill="none" stroke="#1a1a1a" strokeWidth="8" />
       <circle
         cx="48" cy="48" r={r} fill="none"
-        stroke="#e2ff00" strokeWidth="8"
+        stroke="white" strokeWidth="8"
         strokeLinecap="round"
         strokeDasharray={`${dash} ${circ}`}
         transform="rotate(-90 48 48)"
@@ -191,7 +191,7 @@ export default function Dashboard({ token }: Props) {
   }
 
   return (
-    <div className="p-6 md:p-8 space-y-6 max-w-screen-xl">
+    <div className="p-6 md:p-8 space-y-6">
 
       {/* Header */}
       <div className="flex items-center justify-between">
@@ -216,7 +216,7 @@ export default function Dashboard({ token }: Props) {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
           label="Total Reservas" value={total} sub="Todos os estados"
-          color="bg-[#e2ff00]/10 text-[#e2ff00]"
+          color="bg-white/10 text-white"
           icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>}
         />
         <StatCard
@@ -247,7 +247,7 @@ export default function Dashboard({ token }: Props) {
             </div>
             <div className="flex items-center gap-3 text-xs text-[#555]">
               <span className="flex items-center gap-1.5">
-                <div className="w-2.5 h-2.5 rounded-sm bg-[#e2ff00]/20" />
+                <div className="w-2.5 h-2.5 rounded-sm bg-white/20" />
                 Reservas
               </span>
             </div>
@@ -270,7 +270,7 @@ export default function Dashboard({ token }: Props) {
                 <span className="text-[#666]">{s}</span>
                 <div className="flex-1 mx-3 h-1.5 bg-[#1a1a1a] rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-[#e2ff00]/40 rounded-full transition-all duration-700"
+                    className="h-full bg-white/40 rounded-full transition-all duration-700"
                     style={{ width: `${Math.max(0, occupancy - i * 12)}%` }}
                   />
                 </div>
@@ -291,7 +291,7 @@ export default function Dashboard({ token }: Props) {
               <p className="text-xs text-[#555] mt-0.5">Próximos 7 dias</p>
             </div>
             {upcoming.length > 0 && (
-              <span className="text-[11px] font-bold bg-[#e2ff00]/10 text-[#e2ff00] px-2 py-1 rounded-lg">
+              <span className="text-[11px] font-bold bg-white/10 text-white px-2 py-1 rounded-lg">
                 {upcoming.length}
               </span>
             )}
@@ -311,8 +311,8 @@ export default function Dashboard({ token }: Props) {
                 const daysUntil = Math.round((new Date(b.check_in).getTime() - Date.now()) / 86400000);
                 return (
                   <div key={b.id} className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:border-white/[0.08] transition-all group">
-                    <div className="w-9 h-9 rounded-xl bg-[#e2ff00]/10 flex items-center justify-center flex-shrink-0">
-                      <span className="text-[#e2ff00] text-xs font-bold">{daysUntil === 0 ? 'HOJ' : `+${daysUntil}`}</span>
+                    <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
+                      <span className="text-white text-xs font-bold">{daysUntil === 0 ? 'HOJ' : `+${daysUntil}`}</span>
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-semibold text-white truncate">{b.name}</p>

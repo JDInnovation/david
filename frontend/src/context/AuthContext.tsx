@@ -11,16 +11,16 @@ const AuthContext = createContext<AuthState | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [token, setToken] = useState<string | null>(() => {
-    return localStorage.getItem('vanguard-admin-token');
+    return localStorage.getItem('lyxstudios-admin-token');
   });
 
   const isAdmin = !!token;
 
   useEffect(() => {
     if (token) {
-      localStorage.setItem('vanguard-admin-token', token);
+      localStorage.setItem('lyxstudios-admin-token', token);
     } else {
-      localStorage.removeItem('vanguard-admin-token');
+      localStorage.removeItem('lyxstudios-admin-token');
     }
   }, [token]);
 

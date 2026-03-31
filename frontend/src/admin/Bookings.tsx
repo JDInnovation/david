@@ -70,7 +70,7 @@ function StatusDropdown({
             >
               <div className={`w-1.5 h-1.5 rounded-full ${c.dot}`} />
               {c.label}
-              {key === current && <svg className="ml-auto w-3 h-3 text-[#e2ff00]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"/></svg>}
+              {key === current && <svg className="ml-auto w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"/></svg>}
             </button>
           ))}
         </div>
@@ -193,7 +193,7 @@ export default function Bookings({ token }: Props) {
   };
 
   const SortIcon = ({ field }: { field: keyof Booking }) => (
-    <svg className={`w-3 h-3 inline ml-1 transition-transform ${sortField === field && sortDir === 'desc' ? 'rotate-180' : ''} ${sortField !== field ? 'opacity-30' : 'text-[#e2ff00]'}`}
+    <svg className={`w-3 h-3 inline ml-1 transition-transform ${sortField === field && sortDir === 'desc' ? 'rotate-180' : ''} ${sortField !== field ? 'opacity-30' : 'text-white'}`}
       viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
       <polyline points="18 15 12 9 6 15" />
     </svg>
@@ -226,7 +226,7 @@ export default function Bookings({ token }: Props) {
   };
 
   return (
-    <div className="p-6 md:p-8 space-y-6 max-w-screen-xl">
+    <div className="p-6 md:p-8 space-y-6">
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
@@ -252,7 +252,7 @@ export default function Bookings({ token }: Props) {
             placeholder="Procurar por nome, email, ID..."
             value={search}
             onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-            className="w-full pl-9 pr-3 py-2.5 bg-[#111] border border-white/[0.06] rounded-xl text-sm text-white placeholder-[#444] focus:border-[#e2ff00]/30 focus:ring-1 focus:ring-[#e2ff00]/20 outline-none transition-all"
+            className="w-full pl-9 pr-3 py-2.5 bg-[#111] border border-white/[0.06] rounded-xl text-sm text-white placeholder-[#444] focus:border-white/30 focus:ring-1 focus:ring-white/20 outline-none transition-all"
           />
         </div>
 
@@ -262,10 +262,10 @@ export default function Bookings({ token }: Props) {
             <button
               key={key}
               onClick={() => { setStatusFilter(key); setPage(1); }}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 ${statusFilter === key ? 'bg-[#e2ff00]/10 text-[#e2ff00]' : 'text-[#666] hover:text-[#ccc]'}`}
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 ${statusFilter === key ? 'bg-white/10 text-white' : 'text-[#666] hover:text-[#ccc]'}`}
             >
               {label}
-              <span className={`ml-1.5 text-[10px] ${statusFilter === key ? 'text-[#e2ff00]/60' : 'text-[#444]'}`}>
+              <span className={`ml-1.5 text-[10px] ${statusFilter === key ? 'text-white/60' : 'text-[#444]'}`}>
                 {counts[key as keyof typeof counts]}
               </span>
             </button>
@@ -276,7 +276,7 @@ export default function Bookings({ token }: Props) {
         <select
           value={studioFilter}
           onChange={(e) => setStudioFilter(e.target.value)}
-          className="bg-[#111] border border-white/[0.06] rounded-xl px-3 py-2.5 text-xs text-[#888] focus:border-[#e2ff00]/30 outline-none"
+          className="bg-[#111] border border-white/[0.06] rounded-xl px-3 py-2.5 text-xs text-[#888] focus:border-white/30 outline-none"
         >
           {STUDIOS.map((s) => <option key={s}>{s}</option>)}
         </select>
@@ -336,7 +336,7 @@ export default function Bookings({ token }: Props) {
                             <span className="text-white/60 text-[11px] font-semibold">{b.name.charAt(0).toUpperCase()}</span>
                           </div>
                           <div>
-                            <p className="text-sm font-medium text-white group-hover:text-[#e2ff00] transition-colors">{b.name}</p>
+                            <p className="text-sm font-medium text-white group-hover:text-white transition-colors">{b.name}</p>
                             <p className="text-[11px] text-[#555] truncate max-w-40">{b.email}</p>
                           </div>
                         </div>
@@ -351,7 +351,7 @@ export default function Bookings({ token }: Props) {
                       <td className="px-5 py-3.5 text-right">
                         <button
                           onClick={(e) => { e.stopPropagation(); setSelected(b); }}
-                          className="text-[#555] hover:text-[#e2ff00] transition-colors"
+                          className="text-[#555] hover:text-white transition-colors"
                         >
                           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="w-4 h-4">
                             <circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>
@@ -382,7 +382,7 @@ export default function Bookings({ token }: Props) {
                     <button
                       key={p}
                       onClick={() => setPage(p)}
-                      className={`w-7 h-7 rounded-lg text-xs font-medium transition-all ${p === page ? 'bg-[#e2ff00]/10 text-[#e2ff00]' : 'text-[#666] hover:text-white hover:bg-white/[0.06]'}`}
+                      className={`w-7 h-7 rounded-lg text-xs font-medium transition-all ${p === page ? 'bg-white/10 text-white' : 'text-[#666] hover:text-white hover:bg-white/[0.06]'}`}
                     >
                       {p}
                     </button>
