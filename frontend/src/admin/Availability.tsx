@@ -38,10 +38,10 @@ function getDayState(date: Date, bookings: Booking[], blackouts: Blackout[]): Da
 }
 
 const DAY_STYLE: Record<DayState, string> = {
-  available: 'text-white/70 hover:bg-[#e2ff00]/10 hover:text-[#e2ff00] cursor-pointer',
+  available: 'text-white/70 hover:bg-white/10 hover:text-white cursor-pointer',
   booked:    'bg-amber-500/15 text-amber-300 border border-amber-500/20 cursor-default',
   blocked:   'bg-red-500/15 text-red-400 border border-red-500/20 cursor-default line-through',
-  today:     'bg-[#e2ff00]/15 text-[#e2ff00] border border-[#e2ff00]/30 font-bold',
+  today:     'bg-white/15 text-white border border-white/30 font-bold',
   past:      'text-white/20 cursor-default',
 };
 
@@ -128,13 +128,13 @@ export default function Availability({ token }: Props) {
     }
   };
 
-  const inputCls = 'w-full px-3 py-2.5 bg-[#161616] border border-white/[0.06] rounded-xl text-sm text-white focus:border-[#e2ff00]/30 focus:ring-1 focus:ring-[#e2ff00]/10 outline-none transition-all placeholder-[#444]';
+  const inputCls = 'w-full px-3 py-2.5 bg-[#161616] border border-white/[0.06] rounded-xl text-sm text-white focus:border-white/30 focus:ring-1 focus:ring-white/10 outline-none transition-all placeholder-[#444]';
 
   // Legend count
   const booked = bookings.filter((b) => b.status !== 'cancelled').length;
 
   return (
-    <div className="p-6 md:p-8 space-y-6 max-w-screen-xl">
+    <div className="p-6 md:p-8 space-y-6">
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
@@ -153,7 +153,7 @@ export default function Availability({ token }: Props) {
           <button
             key={s}
             onClick={() => setActiveStudio(i)}
-            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${activeStudio === i ? 'bg-[#e2ff00]/10 text-[#e2ff00] border border-[#e2ff00]/20' : 'bg-[#111] border border-white/[0.06] text-[#666] hover:text-[#ccc]'}`}
+            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${activeStudio === i ? 'bg-white/10 text-white border border-white/20' : 'bg-[#111] border border-white/[0.06] text-[#666] hover:text-[#ccc]'}`}
           >
             {s}
           </button>
@@ -214,7 +214,7 @@ export default function Availability({ token }: Props) {
               { label: 'Disponível', color: 'bg-white/10' },
               { label: 'Reservado', color: 'bg-amber-500/15 border border-amber-500/20' },
               { label: 'Bloqueado', color: 'bg-red-500/15 border border-red-500/20' },
-              { label: 'Hoje', color: 'bg-[#e2ff00]/15 border border-[#e2ff00]/30' },
+              { label: 'Hoje', color: 'bg-white/15 border border-white/30' },
             ].map(({ label, color }) => (
               <div key={label} className="flex items-center gap-2 text-xs text-[#666]">
                 <div className={`w-4 h-4 rounded ${color}`} />

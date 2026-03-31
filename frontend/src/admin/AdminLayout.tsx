@@ -108,14 +108,17 @@ function SidebarContent({ collapsed, active, onNavigate, onToggle, onClose, onLo
       {/* Brand */}
       <div className="flex items-center px-4 border-b border-white/[0.06] flex-shrink-0" style={{ height: 64 }}>
         <div className="flex items-center gap-3 overflow-hidden flex-1">
-          <div
-            className="flex-shrink-0 w-8 h-8 rounded-xl bg-[#0e0e0e] border border-white/[0.08] flex items-center justify-center"
-            style={{ boxShadow: '0 0 16px rgba(226,255,0,0.15)' }}
-          >
-            <span className="font-display font-black text-xs leading-none tracking-tighter select-none">
-              <span className="text-white">L</span><span className="text-[#e2ff00]">S</span>
-            </span>
-          </div>
+          {/* Logo — always visible, scale with collapse */}
+          <img
+            src="/logo.png"
+            alt="LyxStudios"
+            className="flex-shrink-0 w-auto object-contain"
+            style={{
+              height: collapsed && !isMobile ? 22 : 28,
+              transition: 'height 0.28s cubic-bezier(0.4,0,0.2,1)',
+              filter: 'brightness(0) invert(1)',
+            }}
+          />
           <div
             className="overflow-hidden whitespace-nowrap"
             style={isMobile ? {} : {
@@ -124,11 +127,7 @@ function SidebarContent({ collapsed, active, onNavigate, onToggle, onClose, onLo
               transition: 'max-width 0.28s cubic-bezier(0.4,0,0.2,1), opacity 0.2s ease',
             }}
           >
-            <p className="font-display font-bold text-sm leading-tight tracking-tight">
-              <span className="text-white">LYX</span>
-              <span className="text-[#e2ff00]"> STUDIO</span>
-            </p>
-            <p className="text-[10px] text-[#555] leading-tight">Backoffice</p>
+            <p className="text-[10px] text-[#484848] leading-tight tracking-widest uppercase">Backoffice</p>
           </div>
         </div>
         {/* Close button — mobile only */}
@@ -148,7 +147,7 @@ function SidebarContent({ collapsed, active, onNavigate, onToggle, onClose, onLo
       {!isMobile && onToggle && (
         <button
           onClick={onToggle}
-          className="absolute -right-3 top-[52px] w-6 h-6 rounded-full bg-[#1a1a1a] border border-white/10 flex items-center justify-center text-[#666] hover:text-[#e2ff00] hover:border-[#e2ff00]/30 transition-all duration-200 z-30"
+          className="absolute -right-3 top-[52px] w-6 h-6 rounded-full bg-[#1a1a1a] border border-white/10 flex items-center justify-center text-[#666] hover:text-white hover:border-white/30 transition-all duration-200 z-30"
           title={collapsed ? 'Expandir menu' : 'Recolher menu'}
         >
           <div className="w-3 h-3">{collapsed ? Ic.chevronRight : Ic.chevronLeft}</div>
@@ -169,12 +168,12 @@ function SidebarContent({ collapsed, active, onNavigate, onToggle, onClose, onLo
                 w-full flex items-center gap-3 rounded-xl transition-all duration-200 relative group
                 ${isCollapsed ? 'justify-center px-0 py-3' : 'px-3 py-2.5'}
                 ${isActive
-                  ? 'bg-[#e2ff00]/10 text-[#e2ff00]'
+                  ? 'bg-white/10 text-white'
                   : 'text-[#666] hover:text-[#ccc] hover:bg-white/[0.04]'}
               `}
             >
               {isActive && (
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-[#e2ff00] rounded-r-full" />
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-white rounded-r-full" />
               )}
               <div className={`w-[18px] h-[18px] flex-shrink-0 transition-transform duration-200 ${!isActive ? 'group-hover:scale-110' : ''}`}>
                 {item.icon}
@@ -190,7 +189,7 @@ function SidebarContent({ collapsed, active, onNavigate, onToggle, onClose, onLo
                 {item.label}
               </span>
               {item.badge && !isCollapsed && (
-                <span className="ml-auto text-[10px] font-bold bg-[#e2ff00]/20 text-[#e2ff00] px-1.5 py-0.5 rounded-full">
+                <span className="ml-auto text-[10px] font-bold bg-white/20 text-white px-1.5 py-0.5 rounded-full">
                   {item.badge}
                 </span>
               )}
@@ -203,8 +202,8 @@ function SidebarContent({ collapsed, active, onNavigate, onToggle, onClose, onLo
       <div className="px-2 py-3 border-t border-white/[0.06] space-y-0.5 flex-shrink-0">
         {(isMobile || !collapsed) && (
           <div className="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-white/[0.03] mb-1">
-            <div className="w-7 h-7 rounded-full bg-[#e2ff00]/15 border border-[#e2ff00]/20 flex items-center justify-center flex-shrink-0">
-              <span className="text-[#e2ff00] text-xs font-bold">A</span>
+            <div className="w-7 h-7 rounded-full bg-white/15 border border-white/20 flex items-center justify-center flex-shrink-0">
+              <span className="text-white text-xs font-bold">A</span>
             </div>
             <div className="min-w-0">
               <p className="text-xs font-semibold text-white/80 truncate">Administrador</p>
@@ -317,15 +316,8 @@ export default function AdminLayout() {
           >
             <div className="w-5 h-5">{Ic.menu}</div>
           </button>
-          <div className="flex items-center gap-2 flex-1 min-w-0">
-            <div
-              className="w-6 h-6 rounded-lg bg-[#0e0e0e] border border-white/[0.08] flex items-center justify-center flex-shrink-0"
-              style={{ boxShadow: '0 0 10px rgba(226,255,0,0.15)' }}
-            >
-              <span className="font-display font-black text-[9px] leading-none tracking-tighter select-none">
-                <span className="text-white">L</span><span className="text-[#e2ff00]">S</span>
-              </span>
-            </div>
+          <div className="flex items-center gap-2.5 flex-1 min-w-0">
+            <img src="/logo.png" alt="LyxStudios" className="h-5 w-auto object-contain flex-shrink-0" style={{ filter: 'brightness(0) invert(1)' }} />
             <span className="font-display font-semibold text-sm text-white truncate">{activeLabel}</span>
           </div>
         </header>
@@ -338,6 +330,16 @@ export default function AdminLayout() {
         >
           {renderSection()}
         </main>
+
+        {/* Copyright strip */}
+        <div className="flex-shrink-0 px-5 py-2 border-t border-white/[0.04] flex items-center justify-between">
+          <p className="text-[10px] text-[#2e2e2e] tracking-widest uppercase select-none">
+            &copy;2025 Clickspot Design
+          </p>
+          <p className="text-[10px] text-[#2a2a2a] tracking-wider uppercase select-none hidden sm:block">
+            LyxStudios Backoffice
+          </p>
+        </div>
       </div>
     </div>
   );
